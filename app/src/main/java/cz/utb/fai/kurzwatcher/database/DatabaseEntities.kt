@@ -4,31 +4,28 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import cz.utb.fai.kurzwatcher.domain.KurzModel
 import cz.utb.fai.kurzwatcher.domain.TargetValueModel
-import java.text.DateFormat
-import java.text.DecimalFormat
+import java.util.Date
 
 
 @Entity
 data class DatabaseKurz constructor(
     @PrimaryKey
     val code: String,
-    val name: String,
-    val inDollars: DecimalFormat)
+    val inCZK: Double)
 
 @Entity
 data class DatabaseTargetValue constructor(
     @PrimaryKey
     val oldCurCode: String,
     val targetCurCode: String,
-    val value: DecimalFormat,
-    val createdTime: DateFormat)
+    val valueInCZK: Double,
+    val createdTime: Date)
 
 fun List<DatabaseKurz>.asKurzModel(): List<KurzModel> {
     return map {
         KurzModel(
             Code = it.code,
-            Name = it.name,
-            InDollars = it.inDollars)
+            InCZK = it.inCZK)
     }
 }
 
@@ -37,7 +34,7 @@ fun List<DatabaseTargetValue>.asTargetValueModel(): List<TargetValueModel> {
         TargetValueModel(
             OldCurCode = it.oldCurCode,
             TargetCurCode = it.targetCurCode,
-            Value = it.value,
+            ValueInCZK = it.valueInCZK,
             CreatedTime = it.createdTime)
     }
 }

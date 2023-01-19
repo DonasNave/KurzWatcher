@@ -1,17 +1,11 @@
 package cz.utb.fai.kurzwatcher.domain
 
-import java.text.DateFormat
-import java.text.DecimalFormat
+import java.util.Date
 
-data class KurzModel(val Name: String,
-                val InDollars: DecimalFormat,
-                val Code: String) {
-
-}
+data class KurzModel(val InCZK: Double,
+                     val Code: String)
 
 data class TargetValueModel(val OldCurCode: String,
                      val TargetCurCode: String,
-                     val Value: DecimalFormat,
-                     val CreatedTime: DateFormat) {
-
-}
+                     val ValueInCZK: Double,
+                     val CreatedTime: Date)
