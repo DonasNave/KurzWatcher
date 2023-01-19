@@ -7,7 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import cz.utb.fai.kurzwatcher.database.getDatabase
 import cz.utb.fai.kurzwatcher.databinding.ActivityMainBinding
+import cz.utb.fai.kurzwatcher.repository.KurzesRepo
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,4 +34,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    /**
+     * The data source this ViewModel will fetch results from.
+     */
+    private val kurzesRepository = KurzesRepo(getDatabase(application))
 }

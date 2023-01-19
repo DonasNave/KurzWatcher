@@ -29,7 +29,7 @@ interface KurzService {
     ): KurzMorphContainer
 }
 
-object KurzesMorph {
+object KurzesNetBridge {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.apilayer.com/exchangerates_data/")

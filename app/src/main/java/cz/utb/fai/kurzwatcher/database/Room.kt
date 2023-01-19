@@ -8,25 +8,25 @@ import cz.utb.fai.kurzwatcher.domain.TargetValueModel
 @Dao
 interface KurzDao {
     @Query("select * from KurzDatabase")
-    suspend fun getKurzes(): LiveData<List<DatabaseKurz>>
+    fun getKurzes(): LiveData<List<DatabaseKurz>>
 
     @Query("select * from KurzDatabase where code IN (:kurzCodes)")
-    suspend fun getSomeKurzes(kurzCodes: List<String>): LiveData<List<DatabaseKurz>>
+    fun getSomeKurzes(kurzCodes: List<String>): LiveData<List<DatabaseKurz>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll( videos: List<DatabaseKurz>)
+    fun insertAll( videos: List<DatabaseKurz>)
 }
 
 @Dao
 interface TargetValueDao {
     @Query("select * from TargetValueDatabase")
-    suspend fun getTargetValues(): LiveData<List<DatabaseTargetValue>>
+    fun getTargetValues(): LiveData<List<DatabaseTargetValue>>
 
     @Query("select * from TargetValueDatabase order by createdTime desc limit 1")
-    suspend fun getLastTargetValue(): LiveData<DatabaseTargetValue>
+    fun getLastTargetValue(): LiveData<DatabaseTargetValue>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll( videos: List<DatabaseTargetValue>)
+    fun insertAll( videos: List<DatabaseTargetValue>)
 }
 
 @Database(entities = [DatabaseKurz::class, DatabaseTargetValue::class], version = 1)
