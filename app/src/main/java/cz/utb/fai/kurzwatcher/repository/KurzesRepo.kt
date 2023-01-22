@@ -3,7 +3,6 @@ package cz.utb.fai.kurzwatcher.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import cz.utb.fai.kurzwatcher.api.KurzesNetBridge
-import cz.utb.fai.kurzwatcher.api.asDatabaseModel
 import cz.utb.fai.kurzwatcher.api.mapKurzesToParams
 import cz.utb.fai.kurzwatcher.database.DatabaseKurz
 import cz.utb.fai.kurzwatcher.database.WatcherDatabase
@@ -20,8 +19,13 @@ class KurzesRepo(private val database: WatcherDatabase) {
     suspend fun refreshKurzes() {
         val currencyCodes = listOf("USD", "EUR", "GBP", "CZK", "JPY", "CHF", "AUD", "CAD") //TODO: select curses from multiple options panel
         withContext(Dispatchers.IO) {
-            val playlist = KurzesNetBridge.kurz.getSpecifiedKurzes(mapKurzesToParams(currencyCodes))
-            database.kurzDao.insertAll(playlist.asDatabaseModel())
+            val kurzes = KurzesNetBridge.kurzService.getSpecifiedKurzes(mapKurzesToParams(currencyCodes))
+            /*database.kurzDao.insertAll(kurzes.rates.map {
+                DatabaseKurz(
+                    it.key.substring(3),
+                    it.value
+                )
+            })*/
         }
     }
 }

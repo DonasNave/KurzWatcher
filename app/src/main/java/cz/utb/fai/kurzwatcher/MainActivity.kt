@@ -34,9 +34,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-    /**
-     * The data source this ViewModel will fetch results from.
-     */
-    private val kurzesRepository = KurzesRepo(getDatabase(application))
 }

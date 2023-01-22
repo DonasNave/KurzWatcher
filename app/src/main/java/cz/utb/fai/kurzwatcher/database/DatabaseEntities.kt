@@ -1,5 +1,6 @@
 package cz.utb.fai.kurzwatcher.database
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import cz.utb.fai.kurzwatcher.domain.KurzModel
@@ -15,7 +16,9 @@ data class DatabaseKurz constructor(
 
 @Entity
 data class DatabaseTargetValue constructor(
-    @PrimaryKey
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val oldCurCode: String,
     val targetCurCode: String,
     val valueInCZK: Double,

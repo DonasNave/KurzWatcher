@@ -1,7 +1,5 @@
 package cz.utb.fai.kurzwatcher.api
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -26,7 +24,7 @@ interface KurzService {
     @GET("latest")
     suspend fun getSpecifiedKurzes(
         @QueryMap options: Map<String, String>
-    ): KurzMorphContainer
+    ): KurzApiModel
 }
 
 object KurzesNetBridge {
@@ -36,5 +34,5 @@ object KurzesNetBridge {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    val kurz = retrofit.create(KurzService::class.java)
+    val kurzService = retrofit.create(KurzService::class.java)
 }
