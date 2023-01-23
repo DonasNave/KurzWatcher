@@ -2,10 +2,9 @@ package cz.utb.fai.kurzwatcher.domain
 
 import java.util.Date
 
-data class KurzModel(val InCZK: Double,
-                     val Code: String)
+data class KurzModel(val Base: String,
+                     val CreatedTime: Date,
+                     val Rates: Map<String, Double>,
+                     val Success: Boolean,
+                     val Timestamp: Long)
 
-data class TargetValueModel(val OldCurCode: String,
-                     val TargetCurCode: String,
-                     val ValueInCZK: Double,
-                     val CreatedTime: Date)

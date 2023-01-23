@@ -34,5 +34,5 @@ object KurzesNetBridge {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    val kurzService = retrofit.create(KurzService::class.java)
+    val kurzService: KurzService = retrofit.create(KurzService::class.java)
 }

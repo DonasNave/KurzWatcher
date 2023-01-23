@@ -28,7 +28,6 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         refreshDataFromRepository()
     }
 
-
     private fun refreshDataFromRepository() {
         viewModelScope.launch {
             try {

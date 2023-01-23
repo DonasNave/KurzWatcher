@@ -3,38 +3,23 @@ package cz.utb.fai.kurzwatcher.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import cz.utb.fai.kurzwatcher.domain.TargetValueModel
 
 @Dao
 interface KurzDao {
     @Query("select * from DatabaseKurz")
     fun getKurzes(): LiveData<List<DatabaseKurz>>
 
-    @Query("select * from DatabaseKurz where code IN (:kurzCodes)")
-    fun getSomeKurzes(kurzCodes: List<String>): LiveData<List<DatabaseKurz>>
+    @Query("select * from DatabaseKurz order by createdTime desc limit 1")
+    fun getLatestKurz(): LiveData<DatabaseKurz>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( kurzes: List<DatabaseKurz>)
-
+    fun insert(kurzes: DatabaseKurz)
 }
 
-@Dao
-interface TargetValueDao {
-    @Query("select * from DatabaseTargetValue")
-    fun getTargetValues(): LiveData<List<DatabaseTargetValue>>
-
-    @Query("select * from DatabaseTargetValue order by createdTime desc limit 1")
-    fun getLastTargetValue(): LiveData<DatabaseTargetValue>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( targetVals: List<DatabaseTargetValue>)
-}
-
-@Database(entities = [DatabaseKurz::class, DatabaseTargetValue::class], version = 1)
-@TypeConverters(Converters::class)
+@Database(entities = [DatabaseKurz::class], version = 1)
+@TypeConverters(DateConverter::class, StringMapConverter::class)
 abstract class WatcherDatabase: RoomDatabase() {
     abstract val kurzDao: KurzDao;
-    abstract val targetValueDao: TargetValueDao;
 }
 
 private lateinit var INSTANCE: WatcherDatabase
@@ -44,7 +29,7 @@ fun getDatabase(context: Context): WatcherDatabase {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
                 WatcherDatabase::class.java,
-                "videos").build()
+                "kurzes").build()
         }
     }
     return INSTANCE

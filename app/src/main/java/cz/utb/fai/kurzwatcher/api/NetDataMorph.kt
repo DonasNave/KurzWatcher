@@ -8,7 +8,7 @@ import java.util.Date
 @JsonClass(generateAdapter = true)
 data class KurzApiModel(
     val base: String,
-    val date: Date,
+    val createdTime: Date,
     val rates: Map<String, Double>,
     val success: Boolean,
     val timestamp: Long
@@ -20,18 +20,22 @@ data class KurzListValue(
     val inCZK: Double
 )
 
-fun KurzApiModel.asDomainModel(): List<KurzModel> {
-    return rates.map {
-        KurzModel(
-            Code = it.key,
-            InCZK = 1/it.value)
-    }
+fun KurzApiModel.asDomainModel(): KurzModel {
+    return KurzModel(
+            Base = base,
+            CreatedTime = createdTime,
+            Rates = rates,
+            Success = success,
+            Timestamp = timestamp)
+
 }
 
-fun KurzApiModel.asDatabaseModel(): List<DatabaseKurz> {
-    return rates.map {
-        DatabaseKurz(
-            code = it.key,
-            inCZK = 1/it.value)
-    }
+fun KurzApiModel.asDatabaseModel(): DatabaseKurz {
+    return DatabaseKurz(
+            id = 0,
+            base = base,
+            createdTime = createdTime,
+            rates = rates,
+            success = success,
+            timestamp = timestamp)
 }
