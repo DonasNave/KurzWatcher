@@ -14,14 +14,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 class HomeViewModel (application: Application) : AndroidViewModel(application) {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-
-    val text: LiveData<String> = _text
-    private val kurzRepository = KurzesRepo(getDatabase(application))
-
+    
     suspend fun convert(settings : ConversionSettings) : ConversionResultModel{
         val result = KurzesNetBridge().userApi.convertCurrency(settings.from, settings.to, settings.amount).body()!!
         Log.d("convert", result.toString())

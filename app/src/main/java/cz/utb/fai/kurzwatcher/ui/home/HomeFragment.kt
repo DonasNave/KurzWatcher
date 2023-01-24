@@ -45,6 +45,7 @@ class HomeFragment : Fragment() {
                 binding.choiceInputEUR.id -> "EUR"
                 binding.choiceInputUSD.id -> "USD"
                 binding.choiceInputGBP.id -> "GBP"
+                binding.choiceInputCZK.id -> "CZK"
                 else -> "BTC"
             }
         }
@@ -56,6 +57,7 @@ class HomeFragment : Fragment() {
                 binding.choiceOutputEur.id -> "EUR"
                 binding.choiceOutputUsd.id -> "USD"
                 binding.choiceOutputGbp.id -> "GBP"
+                binding.choiceOutputCzk.id -> "CZK"
                 else -> "BTC"
             }
         }
@@ -68,9 +70,10 @@ class HomeFragment : Fragment() {
             lifecycleScope.launch {
                 val result = homeViewModel.convert(conversionSettings)
                 if (result.success) {
-                    binding.outputCurrencyText.text = SpannableStringBuilder.valueOf(result.info.rate.toString())
+                    val resultString = result.info.rate.toString() + " " + result.query.to
+                    binding.outputCurrencyText.text = resultString
                 } else {
-                    binding.outputCurrencyText.text = SpannableStringBuilder.valueOf("Error")
+                    binding.outputCurrencyText.text = "Error"
                 }
             }
         }

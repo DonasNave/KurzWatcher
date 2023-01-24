@@ -9,4 +9,7 @@
     <string name="currency_code_usd">USD</string>
     <string name="currency_code_eur">EUR</string>
     <string name="currency_code_btc">BTC</string>
+    <string name="currency_code_CZK">CZK</string>
+    <string name="button_calculate_description">Calculate</string>
+    <string name="hint_value">10</string>
 </resources>

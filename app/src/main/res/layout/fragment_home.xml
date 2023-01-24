@@ -13,38 +13,52 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingBottom="40dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
             android:id="@+id/choices_input"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             app:tbgCheckedButton="@+id/choice_input_EUR">
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_BTC"
+                android:padding="8dp"
+                android:background="@color/cardview_light_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_btc"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_EUR"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_eur"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_USD"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_usd"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_GBP"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_gbp"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_input_CZK"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_CZK"/>
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
@@ -59,45 +73,59 @@
                 android:id="@+id/inputConversionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:hint="10"
+                android:gravity="center"
+                android:hint="@string/hint_value"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="202dp" />
+                tools:layout_editor_absoluteY="202dp"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 
 
         <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
             android:id="@+id/choices_output"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:gravity="center"
             app:tbgCheckedButton="@+id/choice_output_eur">
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_btc"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_btc"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_eur"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_eur"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_usd"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_usd"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_gbp"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_gbp"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_output_czk"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_CZK"/>
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
@@ -113,7 +141,7 @@
                 android:id="@+id/conversion_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calculate"
+                android:text="@string/button_calculate_description"
                 tools:layout_editor_absoluteX="155dp"
                 tools:layout_editor_absoluteY="392dp" />
         </LinearLayout>
@@ -124,17 +152,17 @@
             android:layout_height="wrap_content"
             android:gravity="center">
 
-            <EditText
+            <TextView
                 android:id="@+id/outputCurrencyText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:ems="12"
-                android:inputType="none"
-                android:text="0"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="569dp" />
+                android:textSize="30sp"
+                android:gravity="center"
+                android:text="xx" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
