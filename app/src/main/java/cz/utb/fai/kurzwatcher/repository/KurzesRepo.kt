@@ -45,9 +45,9 @@ class KurzesRepo(private val database: WatcherDatabase) {
                     "CAD" to 0.05
                 ),
                 true,
-                1588300800
+                timestamp = Date(System.currentTimeMillis()).time
             )
-            //database.kurzDao.insert(kurzModel.asDatabaseModel())
+            database.kurzDao.insert(kurzModel.asDatabaseModel())
             Log.d("KurzesRepo", "refreshKurzes() called")
         }
     }

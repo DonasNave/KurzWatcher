@@ -14,6 +14,7 @@ data class DatabaseKurzEntry constructor(
     val code: String,
     val createdTime: LocalDate,
     val rate: Double,
+    val timestamp: Long
 )
 
 fun List<DatabaseKurzEntry>.asKurzEntryModel(): List<KurzEntryModel> {

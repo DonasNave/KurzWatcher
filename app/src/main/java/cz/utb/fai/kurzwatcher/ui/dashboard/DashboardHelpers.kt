@@ -1,17 +1,13 @@
 package cz.utb.fai.kurzwatcher.ui.dashboard
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import cz.utb.fai.kurzwatcher.R
 import cz.utb.fai.kurzwatcher.databinding.KurzItemBinding
 import cz.utb.fai.kurzwatcher.domain.KurzEntryModel
-import java.time.LocalDate
 
 
 class KurzAdapter() : RecyclerView.Adapter<DashboardViewHolder>() {
@@ -36,6 +32,13 @@ class KurzAdapter() : RecyclerView.Adapter<DashboardViewHolder>() {
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.kurz = kurzes[position]
+            it.kurzIcon.setImageResource(when (kurzes[position].Code) {
+                "BTC" -> R.drawable.ic_btc
+                "USD" -> R.drawable.ic_dollar
+                "EUR" -> R.drawable.ic_euro
+                "GBP" -> R.drawable.ic_pound
+               else -> R.drawable.ic_btc
+            })
         }
     }
 
