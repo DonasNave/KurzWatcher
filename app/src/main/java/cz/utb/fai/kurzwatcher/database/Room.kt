@@ -11,9 +11,9 @@ interface KurzDao {
     fun getKurzes(): LiveData<List<DatabaseKurzEntry>>
 
     @Query("Select t.id, t.code, t.createdTime, t.rate, t.timestamp FROM DatabaseKurzEntry t inner join " +
-            "(SELECT id, MAX(timestamp) as max_date FROM DatabaseKurzEntry) a " +
+            "(SELECT id, MAX(timestamp) as max_date FROM DatabaseKurzEntry GROUP BY code) a " +
             "ON a.id = t.id and a.max_date = t.timestamp")
-    fun getLatestKurzes(): LiveData<DatabaseKurzEntry>
+    fun getLatestKurzes(): LiveData<List<DatabaseKurzEntry>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(kurzes: List<DatabaseKurzEntry>)
@@ -25,7 +25,7 @@ interface KurzDao {
     fun deleteOlderThan(date: LocalDate)
 }
 
-@Database(entities = [DatabaseKurzEntry::class], version = 2)
+@Database(entities = [DatabaseKurzEntry::class], version = 3)
 @TypeConverters(DateConverter::class, StringMapConverter::class)
 abstract class WatcherDatabase: RoomDatabase() {
     abstract val kurzDao: KurzDao;

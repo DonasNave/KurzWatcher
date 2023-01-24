@@ -5,4 +5,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="button_refresh">Refresh</string>
     <string name="currency_icon_desc">Currency icon</string>
+    <string name="currency_code_gbp">GBP</string>
+    <string name="currency_code_usd">USD</string>
+    <string name="currency_code_eur">EUR</string>
+    <string name="currency_code_btc">BTC</string>
 </resources>

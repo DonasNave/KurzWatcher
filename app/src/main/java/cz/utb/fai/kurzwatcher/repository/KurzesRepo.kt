@@ -17,38 +17,17 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class KurzesRepo(private val database: WatcherDatabase) {
-    val kurzes: LiveData<List<KurzEntryModel>> = Transformations.map(database.kurzDao.getKurzes()) {
+    val kurzes: LiveData<List<KurzEntryModel>> = Transformations.map(database.kurzDao.getLatestKurzes()) {
             it.asKurzEntryModel()
         }
 
-    suspend fun getLastKurzes() {
-        withContext(Dispatchers.IO) {
-            val kurzes = database.kurzDao.getLatestKurzes()
-        }
-    }
-
     suspend fun refreshKurzes() {
-        val currencyCodes = listOf("USD", "EUR", "GBP", "CZK", "JPY", "CHF", "AUD", "CAD") //TODO: select curses from multiple options panel
+        val currencyCodes = listOf("USD", "EUR", "GBP", "BTC")
         withContext(Dispatchers.IO) {
-            //val kurzModel: KurzApiModel = KurzesNetBridge.kurzService.getSpecifiedKurzes(mapKurzesToParams(currencyCodes))
-            val kurzModel = KurzApiModel( //TEMP DUMMY
-                "CZK",
-                LocalDate.parse("2020-05-01", DateTimeFormatter.ISO_DATE),
-                mapOf(
-                    "USD" to 0.042,
-                    "EUR" to 0.038,
-                    "GBP" to 0.034,
-                    "CZK" to 1.0,
-                    "JPY" to 4.5,
-                    "CHF" to 0.04,
-                    "AUD" to 0.06,
-                    "CAD" to 0.05
-                ),
-                true,
-                timestamp = Date(System.currentTimeMillis()).time
-            )
+            val apiClient = KurzesNetBridge().userApi
+            val apiResult = apiClient.getSpecifiedKurzes(mapKurzesToParams(currencyCodes))
+            val kurzModel: KurzApiModel = apiResult.body()!!
             database.kurzDao.insert(kurzModel.asDatabaseModel())
-            Log.d("KurzesRepo", "refreshKurzes() called")
         }
     }
 }

@@ -4,19 +4,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/choices_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tbgCheckedButton="@+id/choice_input_EUR">
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_input_BTC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_btc"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_input_EUR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_eur"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_input_USD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_usd"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_input_GBP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_gbp"/>
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/inputConversionValue"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:hint="10"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="202dp" />
+
+        </LinearLayout>
+
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/choices_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:tbgCheckedButton="@+id/choice_output_eur">
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_output_btc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_btc"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_output_eur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_eur"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_output_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_usd"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_output_gbp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency_code_gbp"/>
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/conversion_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculate"
+                tools:layout_editor_absoluteX="155dp"
+                tools:layout_editor_absoluteY="392dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/outputCurrencyText"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:ems="12"
+                android:inputType="none"
+                android:text="0"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="569dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
