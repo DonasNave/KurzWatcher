@@ -9,6 +9,10 @@ android {
     namespace 'cz.utb.fai.kurzwatcher'
     compileSdk 33
 
+    dataBinding {
+        enabled=true
+    }
+
     defaultConfig {
         applicationId "cz.utb.fai.kurzwatcher"
         minSdk 30

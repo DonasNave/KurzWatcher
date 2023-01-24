@@ -1,10 +1,8 @@
 package cz.utb.fai.kurzwatcher.domain
 
-import java.util.Date
+import java.time.LocalDate
+data class KurzEntryModel(val Code: String,
+                         val CreatedTime: LocalDate,
+                         val Rate: Double)
 
-data class KurzModel(val Base: String,
-                     val CreatedTime: Date,
-                     val Rates: Map<String, Double>,
-                     val Success: Boolean,
-                     val Timestamp: Long)
 

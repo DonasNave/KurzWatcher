@@ -1,9 +1,9 @@
 package cz.utb.fai.kurzwatcher.ui.dashboard
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import cz.utb.fai.kurzwatcher.database.getDatabase
-import cz.utb.fai.kurzwatcher.domain.KurzModel
 import cz.utb.fai.kurzwatcher.repository.KurzesRepo
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -12,14 +12,14 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
 
     private val kurzRepository = KurzesRepo(getDatabase(application))
 
-    private val kurzList = kurzRepository.kurzes;
+    val kurzList = kurzRepository.kurzes;
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -50,9 +50,10 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
+                Log.d("DashboardViewModel", "Factory create view-model")
                 return DashboardViewModel(app) as T
             }
-            throw IllegalArgumentException("Unable to construct viewmodel")
+            throw IllegalArgumentException("Unable to construct view-model")
         }
     }
 

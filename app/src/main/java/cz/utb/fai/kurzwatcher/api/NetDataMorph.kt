@@ -1,41 +1,36 @@
 package cz.utb.fai.kurzwatcher.api
 
 import com.squareup.moshi.JsonClass
-import cz.utb.fai.kurzwatcher.database.DatabaseKurz
-import cz.utb.fai.kurzwatcher.domain.KurzModel
+import cz.utb.fai.kurzwatcher.database.DatabaseKurzEntry
+import cz.utb.fai.kurzwatcher.domain.KurzEntryModel
+import java.time.LocalDate
 import java.util.Date
 
 @JsonClass(generateAdapter = true)
 data class KurzApiModel(
     val base: String,
-    val createdTime: Date,
+    val createdTime: LocalDate,
     val rates: Map<String, Double>,
     val success: Boolean,
     val timestamp: Long
 )
 
-@JsonClass(generateAdapter = true)
-data class KurzListValue(
-    val code: String,
-    val inCZK: Double
-)
-
-fun KurzApiModel.asDomainModel(): KurzModel {
-    return KurzModel(
-            Base = base,
+fun KurzApiModel.asDomainModel(): List<KurzEntryModel> {
+    return rates.map {
+        KurzEntryModel(
+            Code = it.key,
             CreatedTime = createdTime,
-            Rates = rates,
-            Success = success,
-            Timestamp = timestamp)
+            Rate = it.value)
+    }
 
 }
 
-fun KurzApiModel.asDatabaseModel(): DatabaseKurz {
-    return DatabaseKurz(
+fun KurzApiModel.asDatabaseModel(): List<DatabaseKurzEntry> {
+    return rates.map {
+        DatabaseKurzEntry(
             id = 0,
-            base = base,
+            code = it.key,
             createdTime = createdTime,
-            rates = rates,
-            success = success,
-            timestamp = timestamp)
+            rate = it.value)
+    }
 }

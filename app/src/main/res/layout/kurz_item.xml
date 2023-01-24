@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<data>
+        <variable
+            name="kurz"
+            type="cz.utb.fai.kurzwatcher.domain.KurzEntryModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/code_box"
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:text="@{kurz.code}" />
+
+        <TextView
+            android:id="@+id/value_box"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="wrap_content"
+            android:text="@{kurz.rate}" />
+
+        <TextView
+            android:id="@+id/date_box"
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_height="wrap_content"
+            android:text="@{kurz.createdTime}" />
+    </LinearLayout>
+</layout>
