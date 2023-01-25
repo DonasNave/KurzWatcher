@@ -31,7 +31,17 @@ class KurzAdapter() : RecyclerView.Adapter<DashboardViewHolder>() {
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            it.kurz = kurzes[position]
+            if (it.kurz != null){
+                val newKurz = KurzEntryModel(
+                    Code = kurzes[position].Code,
+                    Rate = kurzes[position].Rate,
+                    CreatedTime = kurzes[position].CreatedTime,
+                    ChangedBy = kurzes[position].Rate - it.kurz!!.Rate
+                )
+                it.kurz = newKurz
+            }else {
+                it.kurz = kurzes[position]
+            }
             it.kurzIcon.setImageResource(when (kurzes[position].Code) {
                 "BTC" -> R.drawable.ic_btc
                 "USD" -> R.drawable.ic_dollar

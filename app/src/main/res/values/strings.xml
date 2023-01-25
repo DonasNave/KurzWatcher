@@ -12,4 +12,9 @@
     <string name="currency_code_CZK">CZK</string>
     <string name="button_calculate_description">Calculate</string>
     <string name="hint_value">10</string>
+    <string name="change_by_icon">Change by icon</string>
+    <string name="lowest_sort">Lowest</string>
+    <string name="latest_sort">Latest</string>
+    <string name="highest_sort">Highest</string>
+    <string name="rates_in_czk">Rates in CZK</string>
 </resources>

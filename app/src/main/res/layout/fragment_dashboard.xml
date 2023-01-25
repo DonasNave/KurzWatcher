@@ -21,39 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="24sp"
+            android:text="@string/rates_in_czk"
             android:textFontWeight="800"
-            android:text="Rates in base CZK"/>
-
-        <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:paddingTop="5dp"
-               android:paddingBottom="5dp"
-               android:orientation="horizontal">
-
-               <TextView
-                   android:layout_width="0dp"
-                   android:gravity="center"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Code"/>
-
-               <TextView
-                   android:layout_width="0dp"
-                   android:gravity="center"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Rate"/>
-
-               <TextView
-                   android:layout_width="0dp"
-                   android:gravity="center"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Date"/>
-
-           </LinearLayout>
+            android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/kurzView"
@@ -77,7 +47,7 @@
                 android:background="@color/cardview_light_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lowest"/>
+                android:text="@string/lowest_sort"/>
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/choice_sort_latest"
@@ -85,7 +55,7 @@
                 app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Latest"/>
+                android:text="@string/latest_sort"/>
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/choice_sort_highest"
@@ -93,7 +63,7 @@
                 app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Highest"/>
+                android:text="@string/highest_sort"/>
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
