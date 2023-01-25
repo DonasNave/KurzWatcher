@@ -62,8 +62,8 @@ class HomeFragment : Fragment() {
                 {
                     if (lastConversionSettings.lastResult != null) {
                         binding.outputCurrencyText.text =
-                            (lastConversionSettings.lastResult!! / lastConversionSettings.amount
-                                    * conversionSettings.amount).toString()
+                            formatNumber(lastConversionSettings.lastResult!! / lastConversionSettings.amount
+                                    * conversionSettings.amount) + " " + conversionSettings.to
                     }
                 }
                 else {
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
                         if (result != null) {
                             if (result.success) {
                                 val resultRate = result.info.rate
-                                val resultString = DecimalFormat("#,###.##").format(resultRate) + " " + result.query.to
+                                val resultString = formatNumber(resultRate) + " " + result.query.to
                                 binding.outputCurrencyText.text = resultString
                                 lastConversionSettings = conversionSettings.copy()
                                 lastConversionSettings.lastResult = resultRate
@@ -94,6 +94,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun formatNumber(number: Double) : String {
+        return DecimalFormat("#,###.##").format(number)
     }
 
     private fun CodeToID(code: String, input: Boolean, binding: FragmentHomeBinding) : Int {

@@ -27,7 +27,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_BTC"
                 android:padding="8dp"
-                android:background="@color/cardview_light_background"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_btc"/>
@@ -35,6 +35,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_EUR"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_eur"/>
@@ -42,6 +43,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_USD"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_usd"/>
@@ -49,6 +51,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_GBP"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_gbp"/>
@@ -56,6 +59,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_input_CZK"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_CZK"/>
@@ -95,6 +99,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_btc"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_btc"/>
@@ -102,6 +107,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_eur"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_eur"/>
@@ -109,6 +115,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_usd"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_usd"/>
@@ -116,6 +123,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_gbp"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_gbp"/>
@@ -123,6 +131,7 @@
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_output_czk"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency_code_CZK"/>

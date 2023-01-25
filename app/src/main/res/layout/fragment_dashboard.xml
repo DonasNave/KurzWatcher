@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="24sp"
-            android:background="@color/design_default_color_secondary"
             android:textFontWeight="800"
             android:text="Rates in base CZK"/>
 
@@ -74,6 +73,7 @@
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/choice_sort_lowest"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:background="@color/cardview_light_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,6 +82,7 @@
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/choice_sort_latest"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Latest"/>
@@ -89,6 +90,7 @@
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/choice_sort_highest"
                 android:padding="8dp"
+                app:tbgMarkerColor="@color/golden_700"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Highest"/>
