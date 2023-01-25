@@ -11,8 +11,10 @@ import java.io.IOException
 class DashboardViewModel (application: Application) : AndroidViewModel(application) {
 
     private val kurzRepository = KurzesRepo(getDatabase(application))
-
-    var kurzList = kurzRepository.kurzes;
+    val kurzUpdater = MutableLiveData("latest")
+    var kurzList = kurzUpdater.switchMap { updater ->
+        kurzRepository.getKurzes(updater);
+    }
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -32,7 +34,6 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             try {
                 kurzRepository.refreshKurzes()
-                loadData()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -43,17 +44,12 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         }
     }
 
-    private fun loadData() {
-        kurzList = kurzRepository.kurzes
-    }
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
     fun onChoiceChanged(specification : String) {
-        kurzRepository.SORT_TYPE = specification
-        loadData()
+        this.kurzUpdater.value = specification
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

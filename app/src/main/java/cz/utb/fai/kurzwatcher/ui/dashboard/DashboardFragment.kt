@@ -51,6 +51,14 @@ class DashboardFragment : Fragment() {
             adapter = viewModelAdapter
         }
 
+        binding.choicesSorting.setOnCheckedChangeListener { _, checkedId ->
+            viewModel.onChoiceChanged(when (checkedId) {
+                binding.choiceSortLowest.id -> "lowest"
+                binding.choiceSortHighest.id -> "highest"
+                else -> "latest"
+            })
+        }
+
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
             if (isNetworkError) onNetworkError()
         }

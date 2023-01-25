@@ -19,9 +19,8 @@ import java.time.format.DateTimeFormatter
 
 class KurzesRepo(private val database: WatcherDatabase) {
     private var LAST_UPDATED : Long = 0
-    public var SORT_TYPE = "latest"
 
-    val kurzes: LiveData<List<KurzEntryModel>> = Transformations.map(when(SORT_TYPE){
+    fun getKurzes(sorter : String): LiveData<List<KurzEntryModel>> = Transformations.map(when(sorter){
             "highest" -> database.kurzDao.getHighestKurzes()
             "lowest" -> database.kurzDao.getLowestKurzes()
             else -> database.kurzDao.getLatestKurzes()
