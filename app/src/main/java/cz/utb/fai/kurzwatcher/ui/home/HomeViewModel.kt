@@ -18,7 +18,8 @@ class HomeViewModel (application: Application) : AndroidViewModel(application) {
     var conversionSettings: ConversionSettings = ConversionSettings(
         from = "EUR",
         to = "EUR",
-        amount = 1.0
+        amount = 1.0,
+        lastResult = 0.0
     )
 
     var lastConversionSettings: ConversionSettings = conversionSettings.copy()

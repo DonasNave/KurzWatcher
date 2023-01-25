@@ -50,6 +50,8 @@ class HomeFragment : Fragment() {
             conversionSettings.to = IDtoCode(checkedId, binding)
         }
 
+        binding.outputCurrencyText.text = formatNumber(conversionSettings.lastResult!!) + " " + conversionSettings.to
+
         val convertButton = binding.conversionButton
         convertButton.setOnClickListener {
 
@@ -61,9 +63,10 @@ class HomeFragment : Fragment() {
                     && conversionSettings.to == lastConversionSettings.to)
                 {
                     if (lastConversionSettings.lastResult != null) {
-                        binding.outputCurrencyText.text =
-                            formatNumber(lastConversionSettings.lastResult!! / lastConversionSettings.amount
-                                    * conversionSettings.amount) + " " + conversionSettings.to
+                        val localResultRate = conversionSettings.lastResult!! / lastConversionSettings.amount * conversionSettings.amount
+                        binding.outputCurrencyText.text = formatNumber(localResultRate) + " " + conversionSettings.to
+                        conversionSettings.lastResult = localResultRate
+                        lastConversionSettings = conversionSettings.copy()
                     }
                 }
                 else {
@@ -74,8 +77,8 @@ class HomeFragment : Fragment() {
                                 val resultRate = result.info.rate
                                 val resultString = formatNumber(resultRate) + " " + result.query.to
                                 binding.outputCurrencyText.text = resultString
+                                conversionSettings.lastResult = resultRate
                                 lastConversionSettings = conversionSettings.copy()
-                                lastConversionSettings.lastResult = resultRate
                             } else {
                                 binding.outputCurrencyText.text = "Error"
                             }
