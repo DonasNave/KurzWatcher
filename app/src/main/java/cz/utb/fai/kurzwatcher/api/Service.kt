@@ -50,6 +50,6 @@ object UserService{
 class KurzesNetBridge {
 
     private val retrofit = UserService.getClient()
-    val userApi = retrofit.create(KurzService::class.java)
+    val userApi: KurzService = retrofit.create(KurzService::class.java)
 
 }

@@ -6,10 +6,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import java.text.DecimalFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @BindingAdapter("android:text")
 fun setText(view: TextView, state: LocalDate) {
-    view.text = state.toString()
+    view.text = DateTimeFormatter.ofPattern("dd/MM/YYYY").format(state)
 }
 
 @BindingAdapter("android:text")

@@ -26,15 +26,15 @@ fun List<DatabaseKurzEntry>.asKurzEntryModel(): List<KurzEntryModel> {
     }
 }
 
-fun List<DatabaseKurzEntry>.asKurzEntryModel(lastBatch : LiveData<List<KurzEntryModel>>): List<KurzEntryModel> {
+fun List<DatabaseKurzEntry>.asKurzEntryModel(lastBatch : List<KurzEntryModel>): List<KurzEntryModel> {
     return map {
-        for (i in 0 until lastBatch.value!!.size){
-            if (it.code == lastBatch.value!![i].Code)
+        for (i in 0 until lastBatch.size){
+            if (it.code == lastBatch[i].Code)
                 KurzEntryModel(
                     Code = it.code,
                     CreatedTime = it.createdTime,
                     Rate = it.rate,
-                    ChangedBy = it.rate - lastBatch.value!![i].Rate)
+                    ChangedBy = it.rate - lastBatch[i].Rate)
         }
         KurzEntryModel(
             Code = it.code,

@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import cz.utb.fai.kurzwatcher.database.getDatabase
+import cz.utb.fai.kurzwatcher.domain.KurzEntryModel
 import cz.utb.fai.kurzwatcher.repository.KurzesRepo
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -11,8 +12,9 @@ import java.io.IOException
 class DashboardViewModel (application: Application) : AndroidViewModel(application) {
 
     private val kurzRepository = KurzesRepo(getDatabase(application))
-    val kurzUpdater = MutableLiveData("latest")
-    var kurzList = kurzUpdater.switchMap { updater ->
+
+    val kurzSorter = MutableLiveData("latest")
+    var kurzList = kurzSorter.switchMap { updater ->
         kurzRepository.getKurzes(updater);
     }
 
@@ -49,7 +51,7 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
     }
 
     fun onChoiceChanged(specification : String) {
-        this.kurzUpdater.value = specification
+        this.kurzSorter.value = specification
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
