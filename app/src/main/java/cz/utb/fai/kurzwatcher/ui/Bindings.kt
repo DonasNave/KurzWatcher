@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import java.text.DecimalFormat
 import java.time.LocalDate
 
 @BindingAdapter("android:text")
@@ -13,7 +14,7 @@ fun setText(view: TextView, state: LocalDate) {
 
 @BindingAdapter("android:text")
 fun setText(view: TextView, state: Double) {
-    view.text = state.toString()
+    view.text = DecimalFormat("#,###.###").format(state)
 }
 
 @BindingAdapter("isNetworkError", "kurzList")

@@ -1,5 +1,6 @@
 package cz.utb.fai.kurzwatcher.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import cz.utb.fai.kurzwatcher.domain.KurzEntryModel
@@ -22,6 +23,23 @@ fun List<DatabaseKurzEntry>.asKurzEntryModel(): List<KurzEntryModel> {
             CreatedTime = it.createdTime,
             Rate = it.rate)
 
+    }
+}
+
+fun List<DatabaseKurzEntry>.asKurzEntryModel(lastBatch : LiveData<List<KurzEntryModel>>): List<KurzEntryModel> {
+    return map {
+        for (i in 0 until lastBatch.value!!.size){
+            if (it.code == lastBatch.value!![i].Code)
+                KurzEntryModel(
+                    Code = it.code,
+                    CreatedTime = it.createdTime,
+                    Rate = it.rate,
+                    ChangedBy = it.rate - lastBatch.value!![i].Rate)
+        }
+        KurzEntryModel(
+            Code = it.code,
+            CreatedTime = it.createdTime,
+            Rate = it.rate)
     }
 }
 

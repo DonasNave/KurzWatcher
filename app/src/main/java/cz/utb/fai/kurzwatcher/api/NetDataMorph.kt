@@ -65,7 +65,7 @@ fun KurzApiModel.asDatabaseModel(): List<DatabaseKurzEntry> {
             id = 0,
             code = it.key,
             createdTime = LocalDate.parse(createdTime),
-            rate = it.value,
+            rate = 1/it.value,
             timestamp = timestamp)
     }
 }

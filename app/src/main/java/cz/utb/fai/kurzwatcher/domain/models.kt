@@ -5,7 +5,8 @@ import cz.utb.fai.kurzwatcher.api.Query
 import java.time.LocalDate
 data class KurzEntryModel(val Code: String,
                          val CreatedTime: LocalDate,
-                         val Rate: Double)
+                         val Rate: Double,
+                         val ChangedBy: Double = 0.0)
 
 data class ConversionResultModel(val date: String,
                            val info: Info,

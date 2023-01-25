@@ -12,7 +12,7 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
 
     private val kurzRepository = KurzesRepo(getDatabase(application))
 
-    val kurzList = kurzRepository.kurzes;
+    var kurzList = kurzRepository.kurzes;
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -32,6 +32,7 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             try {
                 kurzRepository.refreshKurzes()
+                loadData()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -42,8 +43,17 @@ class DashboardViewModel (application: Application) : AndroidViewModel(applicati
         }
     }
 
+    private fun loadData() {
+        kurzList = kurzRepository.kurzes
+    }
+
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
+    }
+
+    fun onChoiceChanged(specification : String) {
+        kurzRepository.SORT_TYPE = specification
+        loadData()
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
