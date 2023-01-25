@@ -11,25 +11,56 @@
             type="cz.utb.fai.kurzwatcher.ui.dashboard.DashboardViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/design_default_color_background">
 
-        <ProgressBar
-            android:id="@+id/loading_spinner"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:isNetworkError = "@{safeUnbox(viewModel.eventNetworkError)}"
-            app:kurzList = "@{viewModel.kurzList}"
-            android:layout_gravity="center" />
+            android:gravity="center"
+            android:textSize="24sp"
+            android:background="@color/design_default_color_secondary"
+            android:textFontWeight="800"
+            android:text="Rates in base CZK"/>
 
+        <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:paddingTop="5dp"
+               android:paddingBottom="5dp"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Code"/>
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Rate"/>
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Date"/>
+
+           </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/kurzView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:listitem="@layout/kurz_item" />
 
-    </FrameLayout>
+    </LinearLayout>
 </layout>

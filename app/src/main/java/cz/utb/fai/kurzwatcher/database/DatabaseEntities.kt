@@ -4,8 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import cz.utb.fai.kurzwatcher.domain.KurzEntryModel
 import java.time.LocalDate
-import java.util.Date
-
 
 @Entity
 data class DatabaseKurzEntry constructor(

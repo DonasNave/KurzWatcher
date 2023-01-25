@@ -19,7 +19,7 @@ fun mapKurzesToParams(kurzes: List<String>): Map<String, String> {
     }
 
     params["base"] = "CZK"
-    params["symbols"] = currenciesString.dropLast(3)
+    params["symbols"] = currenciesString.dropLast(1)
     return params
 }
 

@@ -23,9 +23,18 @@ class HomeViewModel (application: Application) : AndroidViewModel(application) {
 
     var lastConversionSettings: ConversionSettings = conversionSettings.copy()
 
-    suspend fun convert(settings : ConversionSettings) : ConversionResultModel{
-        val result = KurzesNetBridge().userApi.convertCurrency(settings.from, settings.to, settings.amount).body()!!
-        Log.d("convert", result.toString())
-        return result
+    suspend fun convert(settings: ConversionSettings): ConversionResultModel? {
+        try {
+            val result = KurzesNetBridge().userApi.convertCurrency(
+                settings.from,
+                settings.to,
+                settings.amount
+            ).body()!!
+            Log.d("convert", result.toString())
+            return result
+        } catch (networkError: IOException) {
+            Log.d("convert", "Network error")
+            return null
+        }
     }
 }

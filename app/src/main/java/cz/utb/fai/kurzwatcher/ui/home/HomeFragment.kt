@@ -68,14 +68,18 @@ class HomeFragment : Fragment() {
                 else {
                     lifecycleScope.launch {
                         val result = homeViewModel.convert(conversionSettings)
-                        if (result.success) {
-                            val resultRate = result.info.rate
-                            val resultString = DecimalFormat("#,###.##").format(resultRate) + " " + result.query.to
-                            binding.outputCurrencyText.text = resultString
-                            lastConversionSettings = conversionSettings.copy()
-                            lastConversionSettings.lastResult = resultRate
+                        if (result != null) {
+                            if (result.success) {
+                                val resultRate = result.info.rate
+                                val resultString = DecimalFormat("#,###.##").format(resultRate) + " " + result.query.to
+                                binding.outputCurrencyText.text = resultString
+                                lastConversionSettings = conversionSettings.copy()
+                                lastConversionSettings.lastResult = resultRate
+                            } else {
+                                binding.outputCurrencyText.text = "Error"
+                            }
                         } else {
-                            binding.outputCurrencyText.text = "Error"
+                            binding.outputCurrencyText.text = "Network error"
                         }
                     }
                 }
