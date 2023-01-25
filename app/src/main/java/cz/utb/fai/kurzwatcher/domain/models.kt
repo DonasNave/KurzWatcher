@@ -16,6 +16,8 @@ data class ConversionResultModel(val date: String,
 data class ConversionSettings(
     var from: String,
     var to: String,
-    var amount: Double)
+    var amount: Double,
+    var lastResult: Double? = null)
+
 
 

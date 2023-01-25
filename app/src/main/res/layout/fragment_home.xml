@@ -75,7 +75,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:hint="@string/hint_value"
-                android:ems="10"
+                android:text="1"
                 android:inputType="numberDecimal"
                 tools:layout_editor_absoluteX="100dp"
                 tools:layout_editor_absoluteY="202dp"
@@ -158,7 +158,7 @@
                 android:layout_height="60dp"
                 android:textSize="30sp"
                 android:gravity="center"
-                android:text="xx" />
+                android:text="0" />
 
         </LinearLayout>
 

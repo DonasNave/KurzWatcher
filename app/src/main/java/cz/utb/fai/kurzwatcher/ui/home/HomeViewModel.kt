@@ -14,7 +14,15 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 class HomeViewModel (application: Application) : AndroidViewModel(application) {
-    
+
+    var conversionSettings: ConversionSettings = ConversionSettings(
+        from = "EUR",
+        to = "EUR",
+        amount = 1.0
+    )
+
+    var lastConversionSettings: ConversionSettings = conversionSettings.copy()
+
     suspend fun convert(settings : ConversionSettings) : ConversionResultModel{
         val result = KurzesNetBridge().userApi.convertCurrency(settings.from, settings.to, settings.amount).body()!!
         Log.d("convert", result.toString())
